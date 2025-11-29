@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"io"
 	"os"
+	"path"
 
 	"github.com/alecthomas/participle/v2"
 	"github.com/pkg/errors"
@@ -19,7 +20,7 @@ func ParseInput[T any](input io.Reader) (*T, error) {
 		return nil, fmt.Errorf("could not build parser: %w", err)
 	}
 
-	parsed, err := parser.Parse("test.txt", input)
+	parsed, err := parser.Parse(path.Join("resources", "test.txt"), input)
 	if err != nil {
 		return nil, fmt.Errorf("could not parse input: %w", err)
 	}
@@ -28,10 +29,10 @@ func ParseInput[T any](input io.Reader) (*T, error) {
 }
 
 func GetInputFileReader(dayNumber int) io.Reader {
-	filename := fmt.Sprintf("day%v/input.txt", dayNumber)
-	reader, err := os.Open(filename)
+	path := path.Join(fmt.Sprintf("day%v", dayNumber), "resources", "input.txt")
+	reader, err := os.Open(path)
 	if err != nil {
-		panic(errors.Wrap(err, fmt.Sprintf("could not open input file %v", filename)))
+		panic(errors.Wrap(err, fmt.Sprintf("could not open input file %v", path)))
 	}
 	return reader
 }
