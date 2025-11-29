@@ -28,6 +28,8 @@ func ParseInput[T any](input io.Reader) (*T, error) {
 	return parsed, nil
 }
 
+// GetInputFileReader returns an io.Reader that reads the contents of the corresponding day's puzzle input.
+// This function will panic if os.Open returns an error.
 func GetInputFileReader(dayNumber int) io.Reader {
 	path := path.Join(fmt.Sprintf("day%v", dayNumber), "resources", "input.txt")
 	reader, err := os.Open(path)
