@@ -10,7 +10,7 @@ day2.Solve()
 ...
 ```
 
-This ended up with a slightly freaky code generation & dependency injection setup (see `registry/` and `gen.go`), but the end result is that the program will now discover when 
+This ended up with a slightly freaky code generation & dependency injection setup (see `registry/` and `gen.go`), but the end result is that the program will now discover when new days' solvers are added upon running `go generate ./...`.
 
 ## Running the project
 
