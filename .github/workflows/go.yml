@@ -46,7 +46,7 @@ jobs:
 
       # 7. Build binary
       - name: Build binary
-        run: go build -o advent ./...
+        run: go build -o advent .
 
       # 8. Run the program
       - name: Run program
